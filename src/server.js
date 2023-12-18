@@ -2,11 +2,12 @@ const express = require('express');
 const app = express();
 
 app.get("/",(req,res) =>{
-    res.send("Hi home route")
+    res.status(200).json({message: "Hi home route"})
 })
 
 app.get("/products",(req,res) =>{
-    res.send("products are come back on the market")
+    res.status(200).json({message: "products are come back on the market"})
+   
 })
 
 app.listen(3001, () =>{
