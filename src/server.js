@@ -4,12 +4,15 @@ const app = express();
 
 // middleware
 app.use(morgan("dev"))
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
 
 const isLoggedIn = (req,res,next) =>{
 // console.log("isLoggedIn Middleware")
-const login = false;
+const login = true;
 
 if(login){
+    req.body.id = 101;
     next()
 }else{
     return res.status(401).json({message:"Unauthorizaed User"})
@@ -21,6 +24,7 @@ app.get("/",(req,res) =>{
     res.status(200).json({message: "Hi home route..... fine"})
 })
 app.get("/api/user",isLoggedIn,(req,res) =>{
+    console.log("id from loggedIn",req.body.id)
     res.status(200).send({message: "User profile return"})
 })
 
