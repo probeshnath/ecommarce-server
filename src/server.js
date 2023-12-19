@@ -6,8 +6,15 @@ const app = express();
 app.use(morgan("dev"))
 
 const isLoggedIn = (req,res,next) =>{
-console.log("isLoggedIn Middleware")
-next()
+// console.log("isLoggedIn Middleware")
+const login = false;
+
+if(login){
+    next()
+}else{
+    return res.status(401).json({message:"Unauthorizaed User"})
+}
+
 }
 
 app.get("/",(req,res) =>{
