@@ -5,8 +5,16 @@ const app = express();
 // middleware
 app.use(morgan("dev"))
 
+const isLoggedIn = (req,res,next) =>{
+console.log("isLoggedIn Middleware")
+next()
+}
+
 app.get("/",(req,res) =>{
     res.status(200).json({message: "Hi home route..... fine"})
+})
+app.get("/api/user",isLoggedIn,(req,res) =>{
+    res.status(200).send({message: "User profile return"})
 })
 
 app.get("/products",(req,res) =>{
