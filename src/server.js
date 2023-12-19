@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 app.get("/",(req,res) =>{
-    res.status(200).json({message: "Hi home route"})
+    res.status(200).json({message: "Hi home route..... fine"})
 })
 
 app.get("/products",(req,res) =>{
