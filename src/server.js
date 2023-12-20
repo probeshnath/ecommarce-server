@@ -1,11 +1,12 @@
 const express = require('express');
 const morgan = require('morgan')
+const bodyParser = require('body-parser');
 const app = express();
 
 // middleware
 app.use(morgan("dev"))
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}))
 
 const isLoggedIn = (req,res,next) =>{
 // console.log("isLoggedIn Middleware")
