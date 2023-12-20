@@ -38,6 +38,12 @@ app.post("/products",(req,res) =>{
    
 })
 
+// client error handliing
+app.use((req,res,next) =>{
+    res.status(404).json({message: "Route is not found"})
+})
+
+
 app.listen(3001, () =>{
     console.log(` server is runing at http://localhost:3001`)
 } )
