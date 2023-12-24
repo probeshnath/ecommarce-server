@@ -37,6 +37,11 @@ app.post("/products",(req,res) =>{
     res.status(200).json({message: "products post request are come back on the market"})
    
 })
+app.post("/task",(req,res) =>{
+    res.status(200).json({message: "my tasks"})
+   
+})
+
 app.post("/probesh",(req,res) =>{
     res.status(200).json({message: "probesh deb nath"})
    
