@@ -46,6 +46,10 @@ app.post("/probesh",(req,res) =>{
     res.status(200).json({message: "probesh deb nath"})
    
 })
+app.post("/emad",(req,res) =>{
+    res.status(200).json({message: "Emad Exam start"})
+   
+})
 
 // client error handliing
 app.use((req,res,next) =>{
