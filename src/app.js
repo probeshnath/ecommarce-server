@@ -5,6 +5,7 @@ const createError = require('http-errors')
 const app = express();
 const xssClean = require('xss-clean')
 const rateLimit = require('express-rate-limit');
+const userRouter = require('./routers/userRouter');
 
 // set rate limit,... how many time a user can hit the route
 const rateLimiter = rateLimit({
@@ -20,15 +21,15 @@ app.use(morgan("dev"))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
+// user router
+app.use('/api/users' ,userRouter)
+
 
 
 app.get("/", (req, res) => {
     res.status(200).json({ message: "Hi home route..... fine" })
 })
-app.get("/api/user",  (req, res) => {
-    console.log("id from loggedIn", req.body.id)
-    res.status(200).send({ message: "User profile return" })
-})
+
 
 
 
