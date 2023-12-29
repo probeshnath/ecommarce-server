@@ -1,7 +1,6 @@
 const createError = require('http-errors')
 
-
-
+// get user 
 const getUsers =  (req, res,next) => {
     
     try {

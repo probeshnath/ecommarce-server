@@ -10,8 +10,8 @@ const userRouter = require('./routers/userRouter');
 // set rate limit,... how many time a user can hit the route
 const rateLimiter = rateLimit({
     windowMs: 1 * 60 * 1000, // 1 minute
-    max: 5,
-    message: "Too Mant request from this IP address. Please try later"
+    max: 5, // how many time user can requst in the route
+    message: "Too Mant request from this IP address. Please try later" // error message
 })
 
 // middleware
