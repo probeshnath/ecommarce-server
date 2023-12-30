@@ -4,5 +4,12 @@ const errorResponse = (res, {statusCode = 500, message="Internar server error"})
         message: message
     })
 }
+const successResponse = (res, {statusCode = 200, message="Success", payload={}}) =>{
+    return res.status(statusCode).json({
+        success: true,
+        message: message,
+        payload,
+    })
+}
 
-module.exports = {errorResponse}
+module.exports = {errorResponse,successResponse}
