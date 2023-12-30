@@ -7,6 +7,7 @@ const xssClean = require('xss-clean')
 const rateLimit = require('express-rate-limit');
 const userRouter = require('./routers/userRouter');
 const seedRouter  = require('./routers/seedRouter');
+const { errorResponse } = require('./controllers/responseController');
 
 // set rate limit,... how many time a user can hit the route
 const rateLimiter = rateLimit({
@@ -44,9 +45,10 @@ app.use((req, res, next) => {
 })
 // server error handliing -->> all errors handles
 app.use((err, req, res, next) => {
-    return res.status(err.status || 500).json({
-        success: false,
-        message: err.message
+
+    return  errorResponse(res,{
+        statusCode:err.status,
+        message:err.message
     })
 })
 
