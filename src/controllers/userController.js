@@ -1,7 +1,8 @@
 const createError = require('http-errors')
 const User = require('../models/userModel');
 const { successResponse } = require('./responseController');
-const  mongoose  = require('mongoose');
+const { findUserById } = require('../services/finduserById');
+
 
 // get all users
 const getUsers = async (req, res, next) => {
@@ -64,16 +65,8 @@ const getUser = async (req, res, next) => {
     try {
         const id = req.params.id;
 
-        // password hide
-        const options = {
-            password: 0
-        }
-
-        // find
-        const user = await User.findById(id, options)
-
-        // error 
-        if (!user) { throw createError(404, 'No user found') }
+    //    call user
+    const user = await findUserById(id)
 
         // success handler
         return successResponse(res, {
@@ -84,11 +77,7 @@ const getUser = async (req, res, next) => {
             }
         })
     } catch (error) {
-        // invaliid error from mongoose
-        if(error instanceof mongoose.Error){
-            next(createError(400, "Invalid User Id"))
-            return;
-        }
+       
         next(error)
     }
 }
