@@ -1,7 +1,7 @@
 const createError = require('http-errors')
 const User = require('../models/userModel');
 const { successResponse } = require('./responseController');
-const { findUserById } = require('../services/finduserById');
+const { findWithId } = require('../services/findItem');
 
 
 // get all users
@@ -65,8 +65,13 @@ const getUser = async (req, res, next) => {
     try {
         const id = req.params.id;
 
-    //    call user
-    const user = await findUserById(id)
+        // password as a option
+        const options = {
+            password: 0
+        }
+
+        //    call user
+        const user = await findWithId(id,options)
 
         // success handler
         return successResponse(res, {
@@ -77,7 +82,7 @@ const getUser = async (req, res, next) => {
             }
         })
     } catch (error) {
-       
+
         next(error)
     }
 }
