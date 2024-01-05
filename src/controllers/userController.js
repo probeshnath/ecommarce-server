@@ -61,7 +61,7 @@ const getUsers = async (req, res, next) => {
 }
 
 // get single user
-const getUser = async (req, res, next) => {
+const getUserByID = async (req, res, next) => {
 
     try {
         const id = req.params.id;
@@ -72,7 +72,7 @@ const getUser = async (req, res, next) => {
         }
 
         //    call user
-        const user = await findWithId(id, options)
+        const user = await findWithId(User, id, options)
 
         // success handler
         return successResponse(res, {
@@ -89,7 +89,7 @@ const getUser = async (req, res, next) => {
 }
 
 // delete single user
-const deleteUser = async (req, res, next) => {
+const deleteUserByID = async (req, res, next) => {
 
     try {
         const id = req.params.id;
@@ -100,7 +100,7 @@ const deleteUser = async (req, res, next) => {
         }
 
         //    call user
-        const user = await findWithId(id, options)
+        const user = await findWithId(User, id, options)
 
 
         // delete user image
@@ -133,6 +133,6 @@ const deleteUser = async (req, res, next) => {
 
 module.exports = {
     getUsers,
-    getUser,
-    deleteUser
+    getUserByID,
+    deleteUserByID
 }

@@ -1,18 +1,17 @@
 const createError = require('http-errors')
-const User = require("../models/userModel")
 const mongoose  = require('mongoose');
 
-const findWithId = async (id, options) => {
+const findWithId = async (Model, id, options) => {
     try {
         // password hide
         // const options = {
         //     password: 0
         // }
         // find
-        const item = await User.findById(id, options)
+        const item = await Model.findById( id, options)
 
         // error 
-        if (!item) { throw createError(404, 'No user found') }
+        if (!item) { throw createError(404,  `${Model.modelName} does not found`) }
 
         // return user if get user
         return item;
