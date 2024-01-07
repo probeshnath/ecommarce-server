@@ -28,12 +28,10 @@ app.use('/api/users' ,userRouter)
 app.use("/api/seed", seedRouter)
 
 
-
+// home route
 app.get("/", (req, res) => {
     res.status(200).json({ message: "Hi home route..... fine" })
 })
-
-
 
 
 

@@ -3,9 +3,11 @@ const { getUsers, getUserByID, deleteUserByID } = require('../controllers/userCo
 const userRouter = express.Router()
 
 
-// GET: api/users
+// GET: all users api/users
 userRouter.get("/", getUsers )
+//  get single user
 userRouter.get("/:id", getUserByID )
+// delete user
 userRouter.delete("/:id", deleteUserByID )
 
 

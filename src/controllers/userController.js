@@ -120,7 +120,7 @@ const deleteUserByID = async (req, res, next) => {
             message: "User are deleted successfully",
         })
     } catch (error) {
-
+//  passs the error 
         next(error)
     }
 }
