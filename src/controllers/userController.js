@@ -131,10 +131,13 @@ const deleteUserByID = async (req, res, next) => {
 const processRegister = async (req, res, next) => {
 
     try {
+        // received data from client side
         const {name, email, phone, address, password} = req.body;
 
+        // is exist user with this email, check it
         const userExists = await User.exists({email: email})
 
+        // is exist user with this email, return an error
         if(userExists){
             throw createError(409, "User with this email already exist")
         }
@@ -143,9 +146,6 @@ const processRegister = async (req, res, next) => {
         const token = createJsonWebToken({name, email, phone, address, password}, jwtActivationKey, '10m')
         console.log(token)
 
-        const newUser = {name, email, phone, address, password}
-
-        
 
         // success handler
         return successResponse(res, {
