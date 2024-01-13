@@ -5,7 +5,7 @@ const { successResponse } = require('./responseController');
 const { findWithId } = require('../services/findItem');
 const { deleteImage } = require('../helper/deleteImage');
 const { createJsonWebToken } = require('../helper/jsonwebtoken');
-const { jwtActivationKey } = require('../secret');
+const { jwtActivationKey,clintURL } = require('../secret');
 
 
 // get all users
@@ -145,6 +145,20 @@ const processRegister = async (req, res, next) => {
         // create jwt with call function
         const token = createJsonWebToken({name, email, phone, address, password}, jwtActivationKey, '10m')
         console.log(token)
+
+        // prepare email
+        const emailData = {
+            email,
+            subject: 'Account Activation Email',
+            html: `
+            <h2>Hello ${name}</h2>
+            <p>Please click here to <a href="${clintURL}/api/users/activation/${token}" target="_blank" >Activate your account</a></p>
+                        
+            `
+        }
+
+
+        // send email with nodemailer
 
 
         // success handler
