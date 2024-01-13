@@ -10,8 +10,8 @@ const createJsonWebToken = (payload, secretKey, expiresIn) => {
         throw new Error('secretKey must be a non-empty string')
     }
 
+    // main function with trycatch for easily error handle 
     try {
-
         const token = jwt.sign(payload, secretKey, { expiresIn })
         return token
 
